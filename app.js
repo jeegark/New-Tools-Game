@@ -735,13 +735,7 @@ function createDefaultState() {
     metrics: cloneMetrics(BASE_METRICS),
     currentEventIndex: 0,
     pendingResolution: null,
-    log: [
-      {
-        tag: "Boot",
-        title: "Control room online",
-        copy: "Pick two tools on the preparation page before winter starts moving against you.",
-      },
-    ],
+    log: [],
     history: [],
     patterns: {
       supply: 0,
@@ -772,6 +766,14 @@ function loadState() {
 function saveState() {
   try {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch (_error) {
+    // Ignore storage failures in static mode.
+  }
+}
+
+function clearStoredState() {
+  try {
+    window.localStorage.removeItem(STORAGE_KEY);
   } catch (_error) {
     // Ignore storage failures in static mode.
   }
@@ -1572,7 +1574,7 @@ function continueFromResult() {
 
 function resetGame() {
   state = createDefaultState();
-  saveState();
+  clearStoredState();
 
   if (pageId !== "prep") {
     window.location.href = PAGE_CONFIG.prep.path;

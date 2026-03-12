@@ -21,7 +21,7 @@
   --phase-chip-start: #8a3f00;
   --phase-chip-end: #ffbe5c;
   --phase-soft: rgba(255, 190, 92, 0.18);
-  --shadow: 0 24px 70px rgba(1, 8, 19, 0.42);
+  --shadow: 0 12px 30px rgba(1, 8, 19, 0.24);
   --radius-xl: 30px;
   --radius-lg: 20px;
   --radius-md: 14px;
@@ -87,15 +87,7 @@ body[data-page="debrief"] {
 }
 
 body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 52px 52px;
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.8), transparent);
+  display: none;
 }
 
 a {
@@ -123,10 +115,7 @@ textarea {
   padding: clamp(14px, 2.2vw, 20px);
   border: 1px solid var(--line-strong);
   border-radius: var(--radius-xl);
-  background:
-    linear-gradient(135deg, var(--phase-glow), transparent 30%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015)),
-    var(--panel);
+  background: linear-gradient(135deg, var(--phase-glow), transparent 36%), var(--panel);
   box-shadow: var(--shadow);
   backdrop-filter: blur(20px);
 }
@@ -263,10 +252,8 @@ h1 {
   position: relative;
   overflow: hidden;
   border-radius: var(--radius-lg);
-  border: 1px solid var(--line-strong);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 65%),
-    var(--panel-strong);
+  border: 1px solid rgba(221, 234, 252, 0.2);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .schematic-card {
@@ -400,19 +387,15 @@ h1 {
   padding: 12px 14px;
   border-radius: var(--radius-lg);
   border: 1px solid rgba(221, 234, 252, 0.16);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 68%),
-    rgba(8, 18, 33, 0.92);
+  background: rgba(255, 255, 255, 0.04);
   color: var(--ink);
   text-decoration: none;
-  box-shadow: var(--shadow);
+  box-shadow: none;
 }
 
 .phase-nav-link.is-current {
   border-color: var(--phase-chip-end);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 60%),
-    var(--phase-soft);
+  background: var(--phase-soft);
 }
 
 .phase-nav-link.is-complete {
@@ -451,7 +434,12 @@ h1 {
 .metric-strip {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
+  gap: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-lg);
+  background: var(--panel);
+  box-shadow: var(--shadow);
 }
 
 .metric-card,
@@ -459,15 +447,26 @@ h1 {
 .stage-panel,
 .panel {
   border: 1px solid var(--line-strong);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 72%),
-    var(--panel);
+  background: var(--panel);
   box-shadow: var(--shadow);
 }
 
 .metric-card {
-  padding: 12px 14px;
-  border-radius: var(--radius-lg);
+  padding: 0 14px;
+  border: 0;
+  border-right: 1px solid rgba(221, 234, 252, 0.14);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.metric-card:first-child {
+  padding-left: 0;
+}
+
+.metric-card:last-child {
+  padding-right: 0;
+  border-right: 0;
 }
 
 .metric-head {
@@ -525,9 +524,12 @@ h1 {
 }
 
 .progress-panel {
-  margin-top: 10px;
-  padding: 12px 14px 14px;
-  border-radius: var(--radius-lg);
+  margin-top: 8px;
+  padding: 8px 2px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .progress-head {
@@ -543,11 +545,11 @@ h1 {
 }
 
 .progress-track {
-  margin-top: 10px;
+  margin-top: 8px;
   overflow: hidden;
-  height: 8px;
+  height: 6px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .progress-fill {
@@ -661,9 +663,7 @@ h1 {
 .recommendation-card {
   border-radius: var(--radius-lg);
   border: 1px solid var(--line-strong);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 60%),
-    var(--panel-strong);
+  background: var(--panel-strong);
 }
 
 .tool-card {
@@ -829,8 +829,8 @@ h1 {
 .log-item,
 .source-item {
   border-radius: var(--radius-md);
-  border: 1px solid rgba(221, 234, 252, 0.18);
-  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(221, 234, 252, 0.14);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .summary-card {

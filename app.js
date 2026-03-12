@@ -672,6 +672,7 @@ const PAGE_CONFIG = {
 
 const PAGE_ORDER = ["prep", "scenario-one", "scenario-two", "scenario-three", "debrief"];
 const TOOL_MAP = new Map(TOOLS.map((tool) => [tool.id, tool]));
+const HERO_THEME_LINE = "New Threats. New Tools.";
 
 const pageId = document.body.dataset.page || "prep";
 const page = PAGE_CONFIG[pageId] || PAGE_CONFIG.prep;
@@ -679,6 +680,7 @@ let state = loadState();
 
 const elements = {
   pageEyebrow: document.getElementById("pageEyebrow"),
+  pageTheme: document.getElementById("pageTheme"),
   pageHeading: document.getElementById("pageHeading"),
   pageDek: document.getElementById("pageDek"),
   heroActions: document.getElementById("heroActions"),
@@ -855,6 +857,7 @@ function render() {
 
 function renderHero() {
   elements.pageEyebrow.textContent = page.heroEyebrow;
+  elements.pageTheme.textContent = HERO_THEME_LINE;
   elements.pageHeading.textContent = page.heroTitle;
   elements.pageDek.textContent = page.heroDek;
   elements.pageContextLabel.textContent = page.contextLabel;
